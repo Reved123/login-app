@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState(localStorage.getItem("username") || "");
@@ -22,50 +23,50 @@ const Login = () => {
         setLoggedIn(true);
       }
     } catch (err) {
-      setError("Invalid credentials");
+      setError("Invalid username or password");
     }
   };
 
   if (loggedIn) {
     return (
-      <div style={{ textAlign: "center", marginTop: "100px" }}>
-        <h1>Welcome, {username}!</h1>
+      <div className="welcome-container">
+        <h1>Welcome, {username} 👋</h1>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "100px auto", textAlign: "center" }}>
-      <h2>Login</h2>
+    <div className="login-page">
+      <div className="login-card">
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-        />
+        <h2 className="title">Authority Login</h2>
+        <p className="subtitle">Sign in to continue</p>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-        />
+        <form onSubmit={handleLogin}>
 
-        <button
-          type="submit"
-          style={{ padding: "10px 20px", cursor: "pointer" }}
-        >
-          Login
-        </button>
-      </form>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          <button type="submit">Login</button>
+
+        </form>
+
+        {error && <p className="error">{error}</p>}
+
+      </div>
     </div>
   );
 };
