@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://login-backend-51mx.onrender.com", {
+      const response = await axios.post("https://login-app-altn.onrender.com", {
         username,
         password,
       });
