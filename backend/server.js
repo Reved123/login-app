@@ -5,14 +5,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 
-app.use(cors());
-app.use(express.json()); 
+app.use(cors());           
+app.use(express.json());  
 
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  console.log("Received:", username, password); 
+  
+  console.log("Login attempt:", username, password);
 
   if (username === 'admin' && password === 'admin') {
     return res.status(200).json({ message: 'Login successful' });
@@ -22,10 +23,6 @@ app.post('/login', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
+app.get('/', (req, res) => res.send('Backend running'));
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
